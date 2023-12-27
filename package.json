@@ -2,11 +2,11 @@
   "name": "cbt-online",
   "version": "0.1.0",
   "private": true,
-  "sideEffects": false,
+  "sideEffects": false,  
   "scripts": {
     "dev": "refine dev",
     "build": "remix build",
-    "start": "remix-serve build",
+    "start": "PORT=5000 remix-serve build",
     "refine": "refine"
   },
   "dependencies": {
