@@ -68,17 +68,17 @@ export default function App() {
                         icon: <PlayCircleOutlined />,
                       },
                     },
-                    {
-                      name: "kelompoks",
-                      list: "/kelompoks",                      
-                      create: "/kelompoks/create",
-                      edit: "/kelompoks/edit/:id",
-                      meta: {
-                        canDelete: true,
-                        label: "Kelompok",
-                        icon: <GroupOutlined />,
-                      },
-                    },
+                    // {
+                    //   name: "kelompoks",
+                    //   list: "/kelompoks",                      
+                    //   create: "/kelompoks/create",
+                    //   edit: "/kelompoks/edit/:id",
+                    //   meta: {
+                    //     canDelete: true,
+                    //     label: "Kelompok",
+                    //     icon: <GroupOutlined />,
+                    //   },
+                    // },
                     // {
                     //   name: "pesertas",
                     //   list: "/pesertas",
