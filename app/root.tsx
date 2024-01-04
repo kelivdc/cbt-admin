@@ -19,10 +19,11 @@ import routerProvider, {
 import { ColorModeContextProvider } from "@contexts";
 import resetStyle from "@refinedev/antd/dist/reset.css";
 import { DataProvider } from "@refinedev/strapi-v4";
-import { App as AntdApp } from "antd";
+import { App as AntdApp, ConfigProvider } from "antd";
 import { authProvider, axiosInstance } from "~/authProvider";
 import { API_URL } from "~/constants";
 import { GroupOutlined, HomeOutlined, PlayCircleOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons";
+import idID from 'antd/locale/id_ID';
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

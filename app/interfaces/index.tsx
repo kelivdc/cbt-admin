@@ -26,6 +26,9 @@ export interface IKelompok {
 export interface ITopik {
     id: number;
     title: string;
+    mulai: DateTime;
+    akhir: DateTime;
+    show_result: boolean;
 }
 
 export interface UploadFile {

@@ -117,7 +117,7 @@ export default function SoalCreate() {
                 <Form.Item label="Pertanyaan" name="keterangan" rules={[
                     { required: true }
                 ]}>
-                    <Input />
+                    <Input.TextArea rows={5} />
                 </Form.Item>
                 <Form.Item label="Pilihan Ganda">                    
                     <Form.List label="Pilihan" name="pilihan_ganda" labelCol={{ flex: '110px' }} wrapperCol={{ flex: 1 }}>

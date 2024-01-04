@@ -1,8 +1,10 @@
-import { DeleteButton, EditButton, List, ShowButton, getDefaultSortOrder, useTable } from "@refinedev/antd";
+import { BooleanField, DateField, DeleteButton, EditButton, List, ShowButton, getDefaultSortOrder, useTable } from "@refinedev/antd";
 import { Space, Table } from "antd";
 import { ITopik } from "~/interfaces";
 
 export default function TopikList() {
+  const TrueIcon = () => <span>✅</span>;
+  const FalseIcon = () => <span>❌</span>;
   const { tableProps, searchFormProps, sorter } = useTable<ITopik>({
     meta: {
       populate: "*"
@@ -13,6 +15,25 @@ export default function TopikList() {
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="ID" width={25} sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
         <Table.Column dataIndex="title" title="Topik" />
+        <Table.Column dataIndex="mulai" title="Mulai" render={(value) => (
+            <DateField format="LLL" value={value} />
+        )} />
+        <Table.Column dataIndex="akhir" title="Selesai" render={(value) => (
+            <DateField format="LLL" value={value} />
+        )}/>
+        <Table.Column
+          dataIndex="show_result"
+          title="Show Result"
+          render={(value) => (
+            <BooleanField
+              value={value === true}
+              trueIcon={<TrueIcon />}
+              falseIcon={<FalseIcon />}
+              valueLabelTrue="active"
+              valueLabelFalse="no active"
+            />
+          )}
+        />
         <Table.Column<ITopik>
           title="Actions"
           dataIndex="actions"
@@ -25,6 +46,6 @@ export default function TopikList() {
           )}
         />
       </Table>
-    </List>    
+    </List>
   );
 }
