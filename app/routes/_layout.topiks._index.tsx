@@ -40,6 +40,7 @@ export default function TopikList() {
           key="actions"
           render={(_, record) => (
             <Space>
+              <ShowButton size="small" recordItemId={record.id} hideText title="Show" />
               <EditButton size="small" recordItemId={record.id} hideText title="Edit" />
               <DeleteButton size="small" recordItemId={record.id} hideText title="Delete" />
             </Space>

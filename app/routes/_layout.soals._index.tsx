@@ -1,6 +1,6 @@
-import { DeleteButton, EditButton, List, ShowButton, getDefaultSortOrder, useTable } from '@refinedev/antd'
-import { Space, Table } from 'antd'
-import { ISoal } from '~/interfaces'
+import { DeleteButton, EditButton, FilterDropdown, List, ShowButton, getDefaultSortOrder, useSelect, useTable } from '@refinedev/antd'
+import { Select, Space, Table } from 'antd'
+import { ISoal, ITopik } from '~/interfaces'
 
 export default function SoalList() {
     const { tableProps, searchFormProps, sorter } = useTable<ISoal>({
@@ -8,11 +8,29 @@ export default function SoalList() {
             populate: "*"
         }
     })
+    const { selectProps: topikSelectProps } = useSelect<ITopik>({
+        resource: "topiks",
+        optionLabel: "title",
+        optionValue: "id",
+    });
     return (
         <List title="Daftar Soal" canCreate>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" width={25} sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
-                <Table.Column dataIndex={["Topik", "title"]} title="Topik" />
+                <Table.Column dataIndex={["Topik", "title"]} title="Topik"
+                filterDropdown={(props) => (
+                    <FilterDropdown {...props}>
+                        <Select
+                            mode="single"
+                            placeholder="Select Topik"
+                            style={{
+                                width: "300px"
+                            }}
+                            {...topikSelectProps}
+                        />
+                    </FilterDropdown>
+                )}
+                 />
                 <Table.Column dataIndex="title" title="Soal" />
                 <Table.Column dataIndex="waktu" title="Waktu (detik)" />
                 <Table.Column<ISoal>

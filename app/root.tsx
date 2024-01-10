@@ -37,7 +37,7 @@ export default function App() {
     <html lang="en">
       <head>
         <Meta />
-        <Links />
+        <Links />        
       </head>
       <body>
         <RefineKbarProvider>
@@ -61,6 +61,7 @@ export default function App() {
                     {
                       name: "topiks",
                       list: "/topiks",
+                      show: "/topiks/show/:id",
                       create: "/topiks/create",
                       edit: "/topiks/edit/:id",
                       meta: {
@@ -68,30 +69,7 @@ export default function App() {
                         label: "Topik",
                         icon: <PlayCircleOutlined />,
                       },
-                    },
-                    // {
-                    //   name: "kelompoks",
-                    //   list: "/kelompoks",                      
-                    //   create: "/kelompoks/create",
-                    //   edit: "/kelompoks/edit/:id",
-                    //   meta: {
-                    //     canDelete: true,
-                    //     label: "Kelompok",
-                    //     icon: <GroupOutlined />,
-                    //   },
-                    // },
-                    // {
-                    //   name: "pesertas",
-                    //   list: "/pesertas",
-                    //   create: "/pesertas/create",
-                    //   edit: "/pesertas/edit/:id",
-                    //   show: "/pesertas/show/:id",
-                    //   meta: {
-                    //     canDelete: true,
-                    //     label: "Peserta",
-                    //     icon: <UserOutlined />,
-                    //   },
-                    // },
+                    },                  
                     {
                       name: "users",
                       list: "/users",
