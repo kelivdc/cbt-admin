@@ -7,8 +7,8 @@ export default function MultiJawaban() {
             width: "50%"
         }}>
             <Flex gap="middle">
-                <div style={{ width: "60%" }}>Soal</div>
-                <div style={{ width: "40%" }}>Jawaban</div>
+                <div style={{ width: "30%" }}>Soal</div>
+                <div style={{ width: "70%" }}>Jawaban</div>
             </Flex>
             <Form.List label="Multi" name="multi_jawaban" labelCol={{ flex: '110px' }} wrapperCol={{ flex: 1 }}>
                 {(fields, { add, remove }) => (
@@ -16,17 +16,16 @@ export default function MultiJawaban() {
                         <Space direction="vertical" size="small">
                             {fields.map((field, index) => {
                                 return (
-                                    <Flex gap="middle" key={index}>
+                                    <Flex gap="small" key={index} style={{border: "solid 1px #ccc", padding: "5px"}}>
                                         <Flex gap="middle">
                                             <div>{`${index + 1}. Soal`}</div>
                                             <Form.Item name={[field.name, 'hint']} rules={[{ required: true }]}>
                                                 <Input style={{ width: '85px' }} maxLength={4} />
                                             </Form.Item>
-
                                         </Flex>
                                         <Form.Item name={[field.name, 'jawaban']} rules={[{ required: true }]}>
                                             <Radio.Group style={{
-                                                width: "300px"
+                                                width: "250px"
                                             }}>
                                                 <Radio value={1}>A</Radio>
                                                 <Radio value={2}>B</Radio>
