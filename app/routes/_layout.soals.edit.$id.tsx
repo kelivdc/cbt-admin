@@ -8,6 +8,7 @@ export default function SoalEdit() {
         meta: {
             populate: "*",
         },
+        redirect: "show"
     });
     const { data } = queryResult;    
 

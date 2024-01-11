@@ -1,7 +1,7 @@
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Show, Title } from '@refinedev/antd'
 import { useShow } from '@refinedev/core';
-import { Card, Col, Row, Typography } from 'antd';
+import { Avatar, Card, Col, Flex, Row, Space, Typography } from 'antd';
 import { ISoal } from '~/interfaces';
 
 const { Title, Text } = Typography;
@@ -14,6 +14,7 @@ export default function SoalShow() {
   });
   const { data, isLoading } = queryResult;
   const record = data?.data;
+  const abjad = ["A", "B", "C", "D", "E"];
   return (
     <Show isLoading={isLoading}>
       <Title level={5}>ID: {record?.id}</Title>
@@ -37,15 +38,29 @@ export default function SoalShow() {
         <Col span={6}>Gambar</Col>
         <Col span={18}>{record?.gambar}</Col>
       </Row>
-      <Card title="Soal" size="small" style={{marginTop: "15px"}}>
+      <Card title="Soal" size="small" style={{ marginTop: "15px" }}>
         {record?.keterangan}
       </Card>
-      <Card title="Pilihan" size="small" style={{marginTop: "15px"}}>
-        {record?.pilihan_ganda.map((pilihan, idx) => (
-          <div key={idx}>{pilihan.jawaban_benar ? <CheckOutlined style={{color: "#00ff00"}} /> : <CloseOutlined style={{color: "#ff0000"}} />} {pilihan.title} 
-          </div>
-        ))}
-      </Card>
+      {record?.tipe == 'Multi jawaban' ?
+        <Card title="Multi soal" size="small" style={{ marginTop: "15px" }}>
+          {record?.multi_jawaban.map((multi, idx) => (
+              <Flex key={idx + 1} style={{marginBottom: "10px"}}>{idx + 1}. Soal {multi.hint} - {" "}
+                <Flex gap="small" style={{ marginLeft: "10px" }}>
+                  {abjad.map((abc, ix) => (
+                    <div key={ix}> {multi.jawaban == ix + 1 ? <Avatar size="small" style={{ backgroundColor: "#0e780e" }}>{abc}</Avatar> : <Avatar size="small">{abc}</Avatar>}</div>
+                  ))}
+                </Flex>
+              </Flex>
+          ))}
+        </Card>
+        :
+        <Card title="Pilihan" size="small" style={{ marginTop: "15px" }}>
+          {record?.pilihan_ganda.map((pilihan, idx) => (
+            <div key={idx}>{pilihan.jawaban_benar ? <CheckOutlined style={{ color: "#00ff00" }} /> : <CloseOutlined style={{ color: "#ff0000" }} />} {pilihan.title}
+            </div>
+          ))}
+        </Card>
+      }
     </Show>
   )
 }

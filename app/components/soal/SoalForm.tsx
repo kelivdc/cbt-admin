@@ -112,7 +112,7 @@ export default function SoalForm(props) {
                                 name="files"
                                 action={`${apiUrl}/upload`}
                                 listType="picture"
-                                maxCount={5}
+                                maxCount={1}
                                 multiple
                             >
                                 <p className="ant-upload-text">
