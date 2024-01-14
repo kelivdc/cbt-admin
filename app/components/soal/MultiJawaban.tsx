@@ -6,19 +6,70 @@ export default function MultiJawaban() {
         <Form.Item style={{
             width: "50%"
         }}>
+            <Space direction="vertical" size="small">
+                <Space.Compact style={{width: "550px"}}>
+                    <div style={{width: "250px"}}>Bahan</div>
+                    <Form.Item name="multi_bahan_1" rules={[
+                        { required: true }
+                    ]}>
+                        <Input maxLength={1} />
+                    </Form.Item>
+                    <Form.Item label="" name="multi_bahan_2" rules={[
+                        { required: true }
+                    ]}>
+                        <Input maxLength={1} />
+                    </Form.Item>
+                    <Form.Item label="" name="multi_bahan_3" rules={[
+                        { required: true }
+                    ]}>
+                        <Input maxLength={1} />
+                    </Form.Item>
+                    <Form.Item label="" name="multi_bahan_4" rules={[
+                        { required: true }
+                    ]}>
+                        <Input maxLength={1} />
+                    </Form.Item>
+                    <Form.Item label="" name="multi_bahan_5" rules={[
+                        { required: true }
+                    ]}>
+                        <Input maxLength={1} />
+                    </Form.Item>
+                </Space.Compact>
+                <Space.Compact style={{width: "550px"}}>
+                    <div style={{width: "250px"}}>Abjad</div>
+                    <Form.Item name="multi_abjad_1" >
+                        <Input maxLength={1} />
+                    </Form.Item>
+                    <Form.Item label="" name="multi_abjad_2" >
+                        <Input maxLength={1}  />
+                    </Form.Item>
+                    <Form.Item label="" name="multi_abjad_3" >
+                        <Input maxLength={1}  />
+                    </Form.Item>
+                    <Form.Item label="" name="multi_abjad_4" >
+                        <Input maxLength={1}  />
+                    </Form.Item>
+                    <Form.Item label="" name="multi_abjad_5" >
+                        <Input maxLength={1}  />
+                    </Form.Item>
+                </Space.Compact>
+            </Space>           
+            <Form.Item label="Perintah pengerjaan" name="multi_perintah">
+                <Input />
+            </Form.Item>
             <Flex gap="middle">
-                <div style={{ width: "30%" }}>Soal</div>
-                <div style={{ width: "70%" }}>Jawaban</div>
+                <div style={{ width: "35%" }}>Soal</div>
+                <div style={{ width: "65%" }}>Jawaban</div>
             </Flex>
-            <Form.List label="Multi" name="multi_jawaban" labelCol={{ flex: '110px' }} wrapperCol={{ flex: 1 }}>
+            <Form.List label="Multi" name="multi_jawaban" labelCol={{ flex: '110px' }} wrapperCol={{ flex: 1 }} >
                 {(fields, { add, remove }) => (
                     <>
                         <Space direction="vertical" size="small">
                             {fields.map((field, index) => {
                                 return (
-                                    <Flex gap="small" key={index} style={{border: "solid 1px #ccc", padding: "5px"}}>
+                                    <Flex gap="small" key={index} style={{ border: "solid 1px #ccc", padding: "5px" }}>
                                         <Flex gap="middle">
-                                            <div>{`${index + 1}. Soal`}</div>
+                                            <div style={{width: "80px"}}>{`${index + 1}. Soal`}</div>
                                             <Form.Item name={[field.name, 'hint']} rules={[{ required: true }]}>
                                                 <Input style={{ width: '85px' }} maxLength={4} />
                                             </Form.Item>

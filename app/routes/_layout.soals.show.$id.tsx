@@ -19,23 +19,23 @@ export default function SoalShow() {
     <Show isLoading={isLoading}>
       <Title level={5}>ID: {record?.id}</Title>
       <Row>
-        <Col span={6}>Judul</Col>
+        <Col span={6}>Judul:</Col>
         <Col span={18}>{record?.title}</Col>
       </Row>
       <Row>
-        <Col span={6}>Topik</Col>
+        <Col span={6}>Topik:</Col>
         <Col span={18}>{record?.Topik?.title}</Col>
       </Row>
       <Row>
-        <Col span={6}>Bobot</Col>
+        <Col span={6}>Bobot:</Col>
         <Col span={18}>{record?.bobot}</Col>
       </Row>
       <Row>
-        <Col span={6}>Tipe</Col>
+        <Col span={6}>Tipe:</Col>
         <Col span={18}>{record?.tipe}</Col>
       </Row>
       <Row>
-        <Col span={6}>Gambar</Col>
+        <Col span={6}>Gambar:</Col>
         <Col span={18}>{record?.gambar}</Col>
       </Row>
       <Card title="Soal" size="small" style={{ marginTop: "15px" }}>
@@ -43,14 +43,34 @@ export default function SoalShow() {
       </Card>
       {record?.tipe == 'Multi jawaban' ?
         <Card title="Multi soal" size="small" style={{ marginTop: "15px" }}>
+          
+          <table style={{width: "500px", marginBottom: "20px"}} border="1" cellPadding={5}>
+            <tr>
+              <td>Bahan</td>
+              <td>{record?.multi_bahan_1}</td>
+              <td>{record?.multi_bahan_2}</td>
+              <td>{record?.multi_bahan_3}</td>
+              <td>{record?.multi_bahan_4}</td>
+              <td>{record?.multi_bahan_5}</td>
+            </tr>
+            <tr>
+              <td>Abjad</td>
+              <td>{record?.multi_abjad_1}</td>
+              <td>{record?.multi_abjad_2}</td>
+              <td>{record?.multi_abjad_3}</td>
+              <td>{record?.multi_abjad_4}</td>
+              <td>{record?.multi_abjad_5}</td>              
+            </tr>
+          </table>
+          <div style={{marginBottom: "15px"}}>{record?.multi_perintah}</div>
           {record?.multi_jawaban.map((multi, idx) => (
-              <Flex key={idx + 1} style={{marginBottom: "10px"}}>{idx + 1}. Soal {multi.hint} - {" "}
-                <Flex gap="small" style={{ marginLeft: "10px" }}>
-                  {abjad.map((abc, ix) => (
-                    <div key={ix}> {multi.jawaban == ix + 1 ? <Avatar size="small" style={{ backgroundColor: "#0e780e" }}>{abc}</Avatar> : <Avatar size="small">{abc}</Avatar>}</div>
-                  ))}
-                </Flex>
+            <Flex key={idx + 1} style={{ marginBottom: "10px" }}>{idx + 1}. Soal {multi.hint} - {" "}
+              <Flex gap="small" style={{ marginLeft: "10px" }}>
+                {abjad.map((abc, ix) => (
+                  <div key={ix}> {multi.jawaban == ix + 1 ? <Avatar size="small" style={{ backgroundColor: "#d84a1b" }}>{abc}</Avatar> : <Avatar size="small">{abc}</Avatar>}</div>
+                ))}
               </Flex>
+            </Flex>
           ))}
         </Card>
         :
