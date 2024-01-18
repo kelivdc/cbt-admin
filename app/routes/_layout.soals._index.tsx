@@ -3,10 +3,10 @@ import { Select, Space, Table } from 'antd'
 import { ISoal, ITopik } from '~/interfaces'
 
 export default function SoalList() {
-    const { tableProps, searchFormProps, sorter } = useTable<ISoal>({
+    const { tableProps, searchFormProps, sorter, filters } = useTable<ISoal>({
         meta: {
             populate: "*"
-        }
+        },
     })
     const { selectProps: topikSelectProps } = useSelect<ITopik>({
         resource: "topiks",
@@ -17,20 +17,21 @@ export default function SoalList() {
         <List title="Daftar Soal" canCreate>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" width={25} sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
-                <Table.Column dataIndex={["Topik", "title"]} title="Topik"
-                filterDropdown={(props) => (
-                    <FilterDropdown {...props}>
-                        <Select
-                            mode="single"
-                            placeholder="Select Topik"
-                            style={{
-                                width: "300px"
-                            }}
-                            {...topikSelectProps}
-                        />
-                    </FilterDropdown>
-                )}
-                 />
+                <Table.Column dataIndex={["Topik", "title"]} sorter title="Topik soal"
+                        key="Topik.id"
+                        filterDropdown={(props) => (
+                            <FilterDropdown {...props}>
+                                <Select
+                                    mode="single"
+                                    placeholder="Select Topik"
+                                    style={{
+                                        width: "300px"
+                                    }}
+                                    {...topikSelectProps}
+                                />
+                            </FilterDropdown>
+                        )}
+                    />
                 <Table.Column dataIndex="title" title="Soal" />
                 <Table.Column dataIndex="waktu" title="Waktu (detik)" />
                 <Table.Column<ISoal>
