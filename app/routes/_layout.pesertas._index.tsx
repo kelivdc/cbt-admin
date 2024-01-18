@@ -41,15 +41,15 @@ export default function PesertaList() {
 
   return (
     <List title="Peserta" canCreate>
-       <div style={{paddingBottom: "15px"}}>
-      <Form {...searchFormProps} layout="inline">
-        <Space >
-          <Form.Item name="title">
-            <Input placeholder="Search by nama" />
-          </Form.Item>
-          <SaveButton icon={<SearchOutlined />} onClick={searchFormProps.form?.submit}>Find</SaveButton>
-        </Space>
-      </Form>
+      <div style={{ paddingBottom: "15px" }}>
+        <Form {...searchFormProps} layout="inline">
+          <Space >
+            <Form.Item name="title">
+              <Input placeholder="Search by nama" />
+            </Form.Item>
+            <SaveButton icon={<SearchOutlined />} onClick={searchFormProps.form?.submit}>Find</SaveButton>
+          </Space>
+        </Form>
       </div>
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="ID" width={20} sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
@@ -69,11 +69,11 @@ export default function PesertaList() {
             />
           )}
         />
-        <Table.Column dataIndex="createdAt" title="Created" sorter defaultSortOrder={getDefaultSortOrder("createdAt", sorter)} 
-        render={(value) => (
-          <DateField format="LLL" value={value} />
-      )}
-         />
+        <Table.Column dataIndex="createdAt" title="Created" sorter defaultSortOrder={getDefaultSortOrder("createdAt", sorter)}
+          render={(value) => (
+            <DateField format="LLL" value={value} />
+          )}
+        />
         <Table.Column<IPeserta>
           title="Actions"
           dataIndex="actions"

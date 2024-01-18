@@ -57,7 +57,7 @@ export interface ISoal {
 export interface IUserJawaban {
     id: number;
     user: { id: number };
-    topik: { id: number };
+    Soal: { id: number };
     skor: number;
     createdat: date;
 

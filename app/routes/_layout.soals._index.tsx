@@ -15,23 +15,28 @@ export default function SoalList() {
     });
     return (
         <List title="Daftar Soal" canCreate>
-            <Table {...tableProps} rowKey="id">
+            <Table {...tableProps} rowKey="id"
+                pagination={{
+                    showTotal: (total, range) => {
+                        return `Total: ${total} records`
+                    }
+                }}>
                 <Table.Column dataIndex="id" title="ID" width={25} sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
                 <Table.Column dataIndex={["Topik", "title"]} sorter title="Topik soal"
-                        key="Topik.id"
-                        filterDropdown={(props) => (
-                            <FilterDropdown {...props}>
-                                <Select
-                                    mode="single"
-                                    placeholder="Select Topik"
-                                    style={{
-                                        width: "300px"
-                                    }}
-                                    {...topikSelectProps}
-                                />
-                            </FilterDropdown>
-                        )}
-                    />
+                    key="Topik.id"
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Select
+                                mode="single"
+                                placeholder="Select Topik"
+                                style={{
+                                    width: "300px"
+                                }}
+                                {...topikSelectProps}
+                            />
+                        </FilterDropdown>
+                    )}
+                />
                 <Table.Column dataIndex="title" title="Soal" />
                 <Table.Column dataIndex="waktu" title="Waktu (detik)" />
                 <Table.Column<ISoal>

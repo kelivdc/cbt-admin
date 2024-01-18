@@ -32,7 +32,7 @@ export default function Users() {
         optionLabel: "title",
         optionValue: "id",
     });
-   
+
     return (
         <>
             <List title="Daftar peserta" canCreate>
@@ -44,7 +44,13 @@ export default function Users() {
                         <SaveButton icon={<SearchOutlined />} onClick={searchFormProps.form?.submit}>Find</SaveButton>
                     </Form>
                 </div>
-                <Table {...tableProps} rowKey="id">
+                <Table {...tableProps} rowKey="id"
+                    pagination={{
+                        showTotal: (total, range) => {
+                            return `Total: ${total} records`
+                        }
+                    }}
+                >
                     <Table.Column dataIndex="id" title="ID" width={25} sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
                     <Table.Column dataIndex="username" title="Nama" sorter />
                     <Table.Column dataIndex="email" title="Email" />
@@ -77,7 +83,7 @@ export default function Users() {
                     />
                 </Table>
             </List>
-          
+
         </>
     )
 }

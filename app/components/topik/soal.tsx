@@ -28,12 +28,16 @@ export default function Soal(props) {
         }
     })
     return (
-        <List title="Soal" canCreate resource="soals">
-            <Table {...tableProps} rowKey="id">
+        <List title="Soal" canCreate resource="soals">            
+            <Table {...tableProps} rowKey="id" pagination={{
+                showTotal: (total, range) => {
+                    return `Total: ${total}`
+                }
+            }}>
                 <Table.Column dataIndex="id" title="ID" width={25} sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
                 <Table.Column dataIndex="title" title="Soal" />
                 <Table.Column dataIndex="waktu" title="Waktu (detik)" />
-                <Table.Column dataIndex="bobot" title="Bobot" />
+                <Table.Column dataIndex="bobot" title="Bobot" sorter />
                 <Table.Column<ISoal>
                     title="Actions"
                     dataIndex="actions"
