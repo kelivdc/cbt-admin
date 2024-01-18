@@ -32,6 +32,7 @@ export default function UserShow() {
   return (
     <>
       <Show isLoading={isLoading} >
+        <h1>{record?.username}</h1>
         <Tabs items={items} />
       </Show>     
     </>
