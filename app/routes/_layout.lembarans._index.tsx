@@ -27,10 +27,12 @@ export default function Lembaran() {
         <List title="Lembar Jawaban" canCreate>
             <h1>Hasil Jawaban</h1>
             <Table {...tableProps} rowKey="id"
-              pagination={{
+              pagination={{                    
+                ...tableProps.pagination,                   
+                showSizeChanger: true,
                 showTotal: (total, range) => {
                     return `Total: ${total} records`
-                }
+                  },
             }}
             >
                 <Table.Column dataIndex="id" title="ID" width={25} sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
