@@ -15,13 +15,7 @@ export default function SoalList() {
     });
     return (
         <List title="Daftar Soal" canCreate>
-            <Table {...tableProps} rowKey="id"
-                pagination={{
-                    pageSize: 10,
-                    showTotal: (total, range) => {
-                        return `Total: ${total} records`
-                    }
-                }}>
+            <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" width={25} sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
                 <Table.Column dataIndex={["Topik", "title"]} sorter title="Topik soal"
                     key="Topik.id"
