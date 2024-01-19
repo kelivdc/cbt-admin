@@ -17,7 +17,7 @@ export default function SoalList() {
         <List title="Daftar Soal" canCreate>
             <Table {...tableProps} rowKey="id"
                 pagination={{
-                    pageSize: 20,
+                    pageSize: 10,
                     showTotal: (total, range) => {
                         return `Total: ${total} records`
                     }
