@@ -7,15 +7,24 @@ export default function SoalList() {
         meta: {
             populate: "*"
         },
+        syncWithLocation: true,
     })
     const { selectProps: topikSelectProps } = useSelect<ITopik>({
         resource: "topiks",
         optionLabel: "title",
         optionValue: "id",
     });
+
     return (
-        <List title="Daftar Soal" canCreate>
-            <Table {...tableProps} rowKey="id">
+        <List title="Daftar Soal" canCreate>            
+            <Table {...tableProps} rowKey="id"
+                pagination={{                    
+                    ...tableProps.pagination,                   
+                    showSizeChanger: true,
+                    showTotal: (total, range) => {
+                        return `Total: ${total} records`
+                      },
+                }}>
                 <Table.Column dataIndex="id" title="ID" width={25} sorter defaultSortOrder={getDefaultSortOrder("id", sorter)} />
                 <Table.Column dataIndex={["Topik", "title"]} sorter title="Topik soal"
                     key="Topik.id"
