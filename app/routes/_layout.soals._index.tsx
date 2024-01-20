@@ -42,6 +42,7 @@ export default function SoalList() {
                     )}
                 />
                 <Table.Column dataIndex="title" title="Soal" />
+                <Table.Column dataIndex="urutan" title="Urutan" sorter />
                 <Table.Column dataIndex="waktu" title="Waktu (detik)" />
                 <Table.Column<ISoal>
                     title="Actions"

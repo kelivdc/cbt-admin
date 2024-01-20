@@ -35,6 +35,10 @@ export default function SoalShow() {
         <Col span={18}>{record?.tipe}</Col>
       </Row>
       <Row>
+        <Col span={6}>Urutan:</Col>
+        <Col span={18}>{record?.urutan}</Col>
+      </Row>
+      <Row>
         <Col span={6}>Gambar:</Col>
         <Col span={18}>{record?.gambar}</Col>
       </Row>

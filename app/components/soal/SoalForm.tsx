@@ -42,16 +42,16 @@ export default function SoalForm(props) {
     // ]
     const handleTipe = (value) => {
         setTipeSoal(value);
-    }    
-    const tipe = props?.dataValues?.data.tipe    
+    }
+    const tipe = props?.dataValues?.data.tipe
     useEffect(() => {
         setTipeSoal(tipe)
-    },[tipe])
+    }, [tipe])
     return (
         <>
             <Row gutter={16}>
                 <Col span={12}>
-                    <Form.Item label="Topik" name={["Topik","id"]} rules={[
+                    <Form.Item label="Topik" name={["Topik", "id"]} rules={[
                         { required: true },
                     ]} wrapperCol={{
                         style: {
@@ -71,18 +71,30 @@ export default function SoalForm(props) {
             </Row>
             <Row gutter={16}>
                 <Col span={12}>
-                    <Form.Item label="Tipe Soal" name="tipe" rules={[
-                        { required: true },
-                    ]}>
-                        <Select
-                            style={{ width: 150 }}
-                            options={[
-                                { value: 'Pilihan Ganda', label: 'Pilihan Ganda' },
-                                { value: 'Multi jawaban', label: 'Multi jawaban' }
-                            ]}
-                            onChange={handleTipe}                            
-                        />
-                    </Form.Item>
+                    <Row gutter={16}>
+                        <Col span={12}>
+
+                            <Form.Item label="Tipe Soal" name="tipe" rules={[
+                                { required: true },
+                            ]}>
+                                <Select
+                                    style={{ width: 150 }}
+                                    options={[
+                                        { value: 'Pilihan Ganda', label: 'Pilihan Ganda' },
+                                        { value: 'Multi jawaban', label: 'Multi jawaban' }
+                                    ]}
+                                    onChange={handleTipe}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col span={12}>
+                            <Form.Item label="Urutan" name="urutan" rules={[
+                                { required: true },
+                            ]}>
+                                <Input type='number' min="0" />
+                            </Form.Item>
+                        </Col>
+                    </Row>
                 </Col>
                 <Col span={12}>
                     <Form.Item label="Waktu (detik)" name="waktu" rules={[
