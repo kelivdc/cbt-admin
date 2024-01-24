@@ -46,12 +46,24 @@ export interface ISoal {
     bobot: number;
     tipe: string;
     topik: { id: number };
-    image: [
-        { 
-            url: string;
-            name: string;
-        }
-    ]
+    image: {
+        id: number;
+        name: string;
+        alternativeText: any;
+        caption: any;
+        width: number;
+        height: number;
+        hash: string;
+        ext: string;
+        mime: string;
+        size: number;
+        url: string;
+        previewUrl: any;
+        provider: string;
+        provider_metadata: any;
+        createdAt: string;
+        updatedAt: string;
+    }[];
 }
 
 export interface IUserJawaban {

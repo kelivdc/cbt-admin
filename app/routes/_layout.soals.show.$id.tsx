@@ -1,8 +1,10 @@
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Show, Title } from '@refinedev/antd'
 import { useShow } from '@refinedev/core';
-import { Avatar, Card, Col, Flex, Row, Space, Typography } from 'antd';
+import { Avatar, Card, Col, Flex, Image, Row, Space, Typography } from 'antd';
 import { ISoal } from '~/interfaces';
+import { API_URL } from "~/constants";
+
 
 const { Title, Text } = Typography;
 
@@ -40,15 +42,22 @@ export default function SoalShow() {
       </Row>
       <Row>
         <Col span={6}>Gambar:</Col>
-        <Col span={18}>{record?.gambar}</Col>
+        <Col span={18}>
+          {record?.image ?
+            <Image
+              width={200}
+              src={`${API_URL+record?.image?.url}`}
+            />
+            : 'Kosong'}
+        </Col>
       </Row>
       <Card title="Soal" size="small" style={{ marginTop: "15px" }}>
         {record?.keterangan}
       </Card>
       {record?.tipe == 'Multi jawaban' ?
         <Card title="Multi soal" size="small" style={{ marginTop: "15px" }}>
-          
-          <table style={{width: "500px", marginBottom: "20px"}} border="1" cellPadding={5}>
+
+          <table style={{ width: "500px", marginBottom: "20px" }} border="1" cellPadding={5}>
             <tr>
               <td>Bahan</td>
               <td>{record?.multi_bahan_1}</td>
@@ -63,10 +72,10 @@ export default function SoalShow() {
               <td>{record?.multi_abjad_2}</td>
               <td>{record?.multi_abjad_3}</td>
               <td>{record?.multi_abjad_4}</td>
-              <td>{record?.multi_abjad_5}</td>              
+              <td>{record?.multi_abjad_5}</td>
             </tr>
           </table>
-          <div style={{marginBottom: "15px"}}>{record?.multi_perintah}</div>
+          <div style={{ marginBottom: "15px" }}>{record?.multi_perintah}</div>
           {record?.multi_jawaban.map((multi, idx) => (
             <Flex key={idx + 1} style={{ marginBottom: "10px" }}>{idx + 1}. Soal {multi.hint} - {" "}
               <Flex gap="small" style={{ marginLeft: "10px" }}>

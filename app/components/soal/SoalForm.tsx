@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { ISoal, ITopik } from "~/interfaces";
 import PilihanGanda from "./PilihanGanda";
 import MultiJawaban from "./MultiJawaban";
+import { API_URL } from "~/constants";
+import { getValueProps } from "@refinedev/strapi-v4";
 
 export default function SoalForm(props) {
     const { selectProps: topikSelectProps } = useSelect<ITopik>({
@@ -116,15 +118,15 @@ export default function SoalForm(props) {
                     <Form.Item label="Image">
                         <Form.Item
                             name="image"
-                            valuePropName="f"
-                            getValueFromEvent={getValueFromEvent}
+                            valuePropName="fileList"
+                            getValueProps={(data) => getValueProps(data, API_URL)}
                             noStyle
                         >
                             <Upload.Dragger
                                 name="files"
-                                action={`${apiUrl}/upload`}
+                                action={`${API_URL}/api/upload`}
+
                                 listType="picture"
-                                maxCount={1}
                                 multiple
                             >
                                 <p className="ant-upload-text">
