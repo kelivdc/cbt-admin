@@ -1,6 +1,6 @@
 import { Edit, useForm, useSelect } from '@refinedev/antd'
 import { mediaUploadMapper } from '@refinedev/strapi-v4';
-import { Form,  } from 'antd';
+import { Form, } from 'antd';
 import SoalForm from '~/components/soal/SoalForm';
 import { ISoal } from '~/interfaces';
 
@@ -11,14 +11,14 @@ export default function SoalEdit() {
         },
         redirect: "show"
     });
-    const { data } = queryResult;    
+    const { data } = queryResult;
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical"
                 onFinish={(values) => {
-                formProps.onFinish?.(mediaUploadMapper(values));
-              }}>
+                    formProps.onFinish?.(mediaUploadMapper(values));
+                }}>
                 <SoalForm dataValues={data} />
             </Form>
         </Edit>

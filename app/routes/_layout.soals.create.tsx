@@ -5,12 +5,14 @@ import SoalForm from '~/components/soal/SoalForm';
 import { ISoal } from '~/interfaces';
 
 export default function SoalCreate() {
-    const { formProps, saveButtonProps } = useForm<ISoal>({
+    const { formProps, saveButtonProps, queryResult } = useForm<ISoal>({
         meta: {
             populate: "*",
         },
         redirect: "show"
     });
+
+    const { data } = queryResult;
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -19,7 +21,7 @@ export default function SoalCreate() {
                     formProps.onFinish?.(mediaUploadMapper(values));
                 }}
             >
-                <SoalForm />
+                <SoalForm dataValues={data} />
             </Form>
         </Create>
     )
