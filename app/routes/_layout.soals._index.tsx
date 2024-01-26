@@ -4,6 +4,12 @@ import { ISoal, ITopik } from '~/interfaces'
 
 export default function SoalList() {
     const { tableProps, searchFormProps, sorter, filters } = useTable<ISoal>({
+        initialSorter: [
+            {
+                field: "id",
+                order: "desc",
+            },
+        ],
         meta: {
             populate: "*"
         },

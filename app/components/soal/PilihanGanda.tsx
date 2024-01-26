@@ -18,7 +18,7 @@ export default function PilihanGanda() {
                                         </Col>
                                         <Col span={2}>
                                             <Form.Item name={[field.name, 'jawaban_benar']} valuePropName="checked">
-                                                <Switch checkedChildren="Benar" unCheckedChildren="Salah" value="1" />
+                                                <Switch checkedChildren="Benar" unCheckedChildren="Salah" />
                                             </Form.Item>
                                         </Col>
                                         <Col span={4}>
