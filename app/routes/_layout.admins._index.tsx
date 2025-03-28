@@ -18,11 +18,11 @@ export default function Users() {
             ]
         },
         filters: {
-            initial: [
+            permanent: [
                 {
                     field: "role.type",
                     operator: "eq",
-                    value: "member"
+                    value: "authenticated"
                 }
             ]
         }
@@ -35,7 +35,7 @@ export default function Users() {
 
     return (
         <>
-            <List title="Daftar Peserta" canCreate>
+            <List title="Daftar Admin" canCreate>
                 <div style={{ paddingBottom: "15px" }}>
                     <Form {...searchFormProps} layout="inline">
                         <Form.Item name="username">
@@ -66,7 +66,7 @@ export default function Users() {
                             />
                         )}
                     />
-                    <Table.Column dataIndex={["Topik", "title"]} sorter title="Topik soal"
+                    {/* <Table.Column dataIndex={["Topik", "title"]} sorter title="Topik soal"
                         key="Topik.id"
                         filterDropdown={(props) => (
                             <FilterDropdown {...props}>
@@ -80,7 +80,7 @@ export default function Users() {
                                 />
                             </FilterDropdown>
                         )}
-                    />
+                    /> */}
                     <Table.Column<IUser>
                         title="Actions"
                         dataIndex="actions"

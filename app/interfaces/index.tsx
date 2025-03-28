@@ -13,6 +13,8 @@ export interface IUser {
     username: string;
     email: string;
     password: string;
+    blocked: boolean;
+    confirmed: boolean;
     role: {id: number };
     Topik: { id: number };
 }

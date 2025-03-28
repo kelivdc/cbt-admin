@@ -14,7 +14,23 @@ interface IKelompok {
   title: string;
 }
 export default function PesertaCreate() {
-  const { formProps, saveButtonProps } = useForm<IPeserta>();
+  const { formProps, saveButtonProps } = useForm<IUser>();
+  const { selectProps: topikSelectProps } = useSelect<ITopik>({
+    resource: "topiks",
+    sort: [
+      {
+        field: "title",
+        order: "asc",
+      }
+    ],
+    onSearch: (value) => [
+      {
+        field: "title",
+        operator: "contains",
+        value,
+      }
+    ]
+  })
   const { selectProps: kelompokSelectProps } = useSelect<IKelompok>({
     resource: "kelompoks",
     sort: [
@@ -34,7 +50,21 @@ export default function PesertaCreate() {
   return (
     <Create saveButtonProps={saveButtonProps} >
       <Form {...formProps} layout="vertical">
-        <Form.Item label="Username" name="username" rules={[
+      <Form.Item
+          name="role"
+          noStyle
+          initialValue="4"
+        >
+          <Input type="hidden" />
+        </Form.Item>
+        <Form.Item
+          name="confirmed"
+          noStyle
+          initialValue="1"
+        >
+          <Input type="hidden" />
+        </Form.Item>
+        <Form.Item label="Email" name="email" rules={[
           { required: true }
         ]} wrapperCol={{
           style: {
@@ -43,17 +73,12 @@ export default function PesertaCreate() {
         }}>
           <Input />
         </Form.Item>
-        <Form.Item label="Nama lengkap" name="title" rules={[
+        <Form.Item label="Nama lengkap" name="username" rules={[
           { required: true }
         ]}>
           <Input />
-        </Form.Item>
-        <Form.Item label="Alamat" name="alamat" rules={[
-          { required: true }
-        ]}>
-          <Input />
-        </Form.Item>
-        <Form.Item label="Kelompok" name={["kelompok", "id"]}
+        </Form.Item>        
+        <Form.Item label="Topik" name={["Topik", "id"]}
           rules={[
             { required: true }
           ]}
@@ -63,10 +88,20 @@ export default function PesertaCreate() {
             }
           }}
         >
-          <Select {...kelompokSelectProps} />
+          <Select {...topikSelectProps} />
         </Form.Item>
-        <Form.Item label="Active" name="status">
-          <Switch />
+        
+        <Form.Item label="Blocked ?" name="blocked" valuePropName="checked">
+          <Checkbox />
+        </Form.Item>
+        <Form.Item label="Password" name="password" rules={[
+          { required: true }
+        ]}  wrapperCol={{
+          style: {
+            width: "300px"
+          }
+        }}>
+          <Input.Password type="password" />
         </Form.Item>
       </Form>
     </Create>

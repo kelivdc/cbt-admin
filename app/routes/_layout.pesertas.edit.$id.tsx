@@ -1,53 +1,103 @@
-import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select, Switch } from "antd";
-import { IPeserta, IKelompok } from "~/interfaces";
+import { Create, Edit, useForm, useSelect } from '@refinedev/antd';
+import { Checkbox, Form, Input, Select, Tabs, TabsProps } from 'antd';
+import { Switch } from 'antd/lib';
+import { ITopik, IUser } from '~/interfaces';
 
-export const meta: MetaFunction = () => ({
-    charset: "utf-8",
-    title: "Peserta",
-    viewport: "width=device-width,initial-scale=1",
-});
-export default function PesertaEdit() {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPeserta>({
-        metaData: { populate: ["kelompok"] },
-        warnWhenUnsavedChanges: true,
-    });
+export default function UserEdit() {
+  const { formProps, saveButtonProps, queryResult } = useForm<IUser>({
+    meta: {
+      populate: "Topik",
+    },
+    redirect: "show"
+  });
+  const userData = queryResult?.data?.data;
+  const { selectProps: topikSelectProps } = useSelect<ITopik>({
+    resource: "topiks",
+    defaultValue: userData?.Topik?.id
+  });
 
-    const { selectProps: kelompokSelectProps } = useSelect<IKelompok>({
-        resource: "kelompoks",
-        defaultValue: queryResult?.data?.data.kelompok?.id
-    })
+  const EditProfile = () => {
     return (
-        <>
-            <Edit saveButtonProps={saveButtonProps}>
-                <Form {...formProps} layout="vertical">
-                    <Form.Item label="Username" name="username" rules={[
-                        { required: true }
-                    ]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item label="Nama lengkap" name="title" rules={[
-                        { required: true }
-                    ]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item label="Alamat" name="alamat" rules={[
-                        { required: true }
-                    ]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item label="Kelompok" name={["kelompok", "id"]}
-                        rules={[
-                            { required: true }
-                        ]}
-                    >
-                        <Select {...kelompokSelectProps} />
-                    </Form.Item>
-                    <Form.Item label="Status" name="status" valuePropName="checked">
-                        <Switch> Active</Switch>
-                    </Form.Item>
-                </Form>
-            </Edit>
-        </>
+      <Form {...formProps} layout="vertical" >
+        <Form.Item label="Nama lengkap" name="username" rules={[
+          { required: true }
+        ]} wrapperCol={{
+          style: {
+            width: "300px"
+          }
+        }}>
+          <Input />
+        </Form.Item>
+        <Form.Item label="Email" name="email" rules={[
+          { required: true }
+        ]} wrapperCol={{
+          style: {
+            width: "300px"
+          }
+        }}>
+          <Input type="email" />
+        </Form.Item>
+        <Form.Item label="Topik" name={["Topik", "id"]}
+          rules={[
+            { required: true }
+          ]}
+          wrapperCol={{
+            style: {
+              width: "300px"
+            }
+          }}
+        >
+          <Select {...topikSelectProps} />
+        </Form.Item>
+        <Form.Item label="Blocked ?" name="blocked"          
+          wrapperCol={{
+            style: {
+              width: "300px"
+            }
+          }}
+          valuePropName="checked"
+        >
+          <Checkbox />
+        </Form.Item>       
+      </Form>
     )
+  }
+
+  const EditPassword = () => {
+    return (
+      <Form {...formProps} layout="vertical" >
+        <Form.Item
+          name="password"
+          label="New Password"
+          wrapperCol={{
+            style: {
+              width: "300px"
+            }
+          }}
+          rules={[
+            { required: true }
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+      </Form>
+    )
+  }
+  const items: TabsProps['items'] = [
+    {
+      key: 'profile',
+      label: 'Profile',
+      children: <EditProfile />
+    },
+    {
+      key: 'password',
+      label: 'Password',
+      children: <EditPassword />
+    }
+  ]
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Tabs items={items} />
+    </Edit>    
+  )
 }

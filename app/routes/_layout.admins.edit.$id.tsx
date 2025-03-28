@@ -1,5 +1,6 @@
 import { Create, Edit, useForm, useSelect } from '@refinedev/antd';
-import { Form, Input, Select, Tabs, TabsProps } from 'antd';
+import { Checkbox, Form, Input, Select, Tabs, TabsProps } from 'antd';
+import { Switch } from 'antd/lib';
 import { ITopik, IUser } from '~/interfaces';
 
 export default function UserEdit() {
@@ -18,13 +19,7 @@ export default function UserEdit() {
   const EditProfile = () => {
     return (
       <Form {...formProps} layout="vertical" >
-        <Form.Item
-          name="role"
-          noStyle
-          initialValue="3"
-        >
-          <Input type="hidden" />
-        </Form.Item>
+
         <Form.Item label="Nama lengkap" name="username" rules={[
           { required: true }
         ]} wrapperCol={{
@@ -43,18 +38,16 @@ export default function UserEdit() {
         }}>
           <Input type="email" />
         </Form.Item>
-        <Form.Item label="Topik" name={["Topik", "id"]}
-          rules={[
-            { required: true }
-          ]}
+        <Form.Item label="Blocked ?" name="blocked"          
           wrapperCol={{
             style: {
               width: "300px"
             }
           }}
+          valuePropName="checked"
         >
-          <Select {...topikSelectProps} />
-        </Form.Item>
+          <Checkbox />
+        </Form.Item>       
       </Form>
     )
   }
@@ -93,50 +86,7 @@ export default function UserEdit() {
   ]
   return (
     <Edit saveButtonProps={saveButtonProps}>
-
       <Tabs items={items} />
-    </Edit>
-
-    // <Edit saveButtonProps={saveButtonProps}>
-    //   <Form {...formProps} layout="vertical" >
-    //     <Form.Item
-    //       name="role"
-    //       noStyle
-    //       initialValue="3"
-    //     >
-    //       <Input type="hidden" />
-    //     </Form.Item>
-    //     <Form.Item label="Nama lengkap" name="username" rules={[
-    //       { required: true }
-    //     ]} wrapperCol={{
-    //       style: {
-    //         width: "300px"
-    //       }
-    //     }}>
-    //       <Input />
-    //     </Form.Item>
-    //     <Form.Item label="Email" name="email" rules={[
-    //       { required: true }
-    //     ]} wrapperCol={{
-    //       style: {
-    //         width: "300px"
-    //       }
-    //     }}>
-    //       <Input type="email" />
-    //     </Form.Item>
-    //     <Form.Item label="Topik" name={["Topik", "id"]}
-    //       rules={[
-    //         { required: true }
-    //       ]}
-    //       wrapperCol={{
-    //         style: {
-    //           width: "300px"
-    //         }
-    //       }}
-    //     >
-    //       <Select {...topikSelectProps} />
-    //     </Form.Item>        
-    //   </Form>
-    // </Edit>
+    </Edit>    
   )
 }

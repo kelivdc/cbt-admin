@@ -4,11 +4,11 @@ import { Button, Descriptions, Form, Input, Modal, Tabs, TabsProps, Typography }
 import { useState } from "react";
 import ChangePassword from "~/components/user/change_password";
 import Hasil from "~/components/user/hasil";
-import Profile from "~/components/user/profile";
+import Profile from "~/components/admin/profile";
 import { IUser } from "~/interfaces";
 const { Title, Text } = Typography;
 
-export default function UserShow() {
+export default function AdminShow() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { queryResult } = useShow<IUser>({
     metaData: {
@@ -22,11 +22,6 @@ export default function UserShow() {
       key: 'profile',
       label: 'Profile',
       children: <Profile id={record?.id} />
-    },
-    {
-      key: 'hasil',
-      label: 'Hasil Test',
-      children: <Hasil id={record?.id} />
     }
   ]
   return (

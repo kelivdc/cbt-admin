@@ -21,7 +21,6 @@ export default function Profile(props) {
           <Tag color="green">No</Tag>
         )}
       </Descriptions.Item>
-      <Descriptions.Item label="Topik">{record?.Topik.title}</Descriptions.Item>
     </Descriptions>
   )
 }
