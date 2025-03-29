@@ -64,6 +64,11 @@ export default function PesertaCreate() {
         >
           <Input type="hidden" />
         </Form.Item>
+        <Form.Item label="Nama lengkap" name="username" rules={[
+          { required: true }
+        ]}>
+          <Input />
+        </Form.Item>        
         <Form.Item label="Email" name="email" rules={[
           { required: true }
         ]} wrapperCol={{
@@ -72,12 +77,7 @@ export default function PesertaCreate() {
           }
         }}>
           <Input />
-        </Form.Item>
-        <Form.Item label="Nama lengkap" name="username" rules={[
-          { required: true }
-        ]}>
-          <Input />
-        </Form.Item>        
+        </Form.Item>       
         <Form.Item label="Topik" name={["Topik", "id"]}
           rules={[
             { required: true }
