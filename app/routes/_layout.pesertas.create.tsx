@@ -53,7 +53,7 @@ export default function PesertaCreate() {
       <Form.Item
           name="role"
           noStyle
-          initialValue="4"
+          initialValue="3"
         >
           <Input type="hidden" />
         </Form.Item>
