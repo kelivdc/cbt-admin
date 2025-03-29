@@ -21,10 +21,12 @@ axiosInstance.interceptors.request.use((request) => {
 
 export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
-    const { data, status } = await strapiAuthHelper.login(email, password);
-    if (status === 200) {
+    // const { data, status } = await strapiAuthHelper.login(email, password);
+    try {
+      const { data, status } = await strapiAuthHelper.login(email, password);
+      const rolenya = await strapiAuthHelper.me(data.jwt, { meta: { populate: "role" } });
+      if (rolenya.data.role.name !== "Authenticated") return { error: { name: "Login Error", message: "Invalid credentials" } };
       Cookies.set(TOKEN_KEY, data.jwt);
-
       // set header axios instance
       axiosInstance.defaults.headers.common = {
         Authorization: `Bearer ${data.jwt}`,
@@ -34,10 +36,16 @@ export const authProvider: AuthBindings = {
         success: true,
         redirectTo: "/",
       };
+    } catch (error) {
+      return {
+        success: false,
+        error: {
+          name: "Login Error",
+          message: "Invalid credentials"
+        },
+      };
     }
-    return {
-      success: false,
-    };
+    return null;    
   },
   logout: async () => {
     Cookies.remove(TOKEN_KEY);
@@ -47,7 +55,7 @@ export const authProvider: AuthBindings = {
     };
   },
   onError: async (error) => {
-    console.error(error);
+    console.log('--- onError ---');
     return { error };
   },
   check: async (request) => {
@@ -91,13 +99,13 @@ export const authProvider: AuthBindings = {
     const { data, status } = await strapiAuthHelper.me(token);
     if (status === 200) {
       const { id, username, email } = data;
+
       return {
         id,
         name: username,
         email,
       };
     }
-
     return null;
   },
 };
